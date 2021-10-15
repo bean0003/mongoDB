@@ -1,0 +1,98 @@
+02강- MongoDB개념과RDBMS 비교
+
+
+
+1. MongoDB소개
+MongoDB는C++ 로작성된문서지향적NoSQL데이터베이스이다
+NoSQL데이터베이스중사용인지도 1위이다
+10gen 이란회사에서 2007년에처음개발했으며 2009년오픈소스로전향한 DB이다
+구글, 페이스북, 포스퀘어, 뉴욕타임즈, 이베이등주요대기업또는 SNS업체에서많이사용함
+Javascript의Json(BSON)형태의데이터구조를가진다
+
+
+2. NoSQL이란?
+SQL = Structured Query Language (구조적질의언어)
+NoSQL = No Structured Query Language (구조가없는질의언어)
+즉Table(Collection) 에서스키마(Schema) 를가지고있지않음.
+
+
+3. Collection 와Document 는뭔가요?
+RDBMS = 테이블(Table), 데이터(Row)
+MongoDB = 테이블(Collection), 데이터(Document)
+왜 Document 라고 표현 했을까? 기존 테이블 구조와는 전혀 다르기 때문에 명칭을 달리함.
+
+
+4. RDBMS Table 의구조
+RDBMS의테이블은스키마(Schema) 를가지고있고고정된구조이다(SQL)
+
+SELECT * FROM g5_write_test;
+
+
+
+g5_write_test 의 스키마
+wr_id	int(11)
+wr_subject	varchar(255)
+wr_content	text
+
+
+SELECT * FROM g5_board_file;
+
+
+
+5.MongoDB 의 데이터 구조
+db.g5_write_test.insert(
+{
+  "wr_id": 1
+  ,"wr_subject": "테스트 제목"
+  ,"wr_content": "내용"
+  ,"files":[
+{ "bf_no":0, "bf_source": "첨부파일1.jpg", "bf_datetime": "2016-11-08" }
+    , { "bf_no":1, "bf_source": "첨부파일2.jpg", "bf_datetime": "2016-11-08" }
+  ]
+}
+)
+
+
+
+
+
+
+6. 데이터 구조의 동적변경
+db.g5_write_test.insert(
+{
+  "wr_id": 1
+  ,"wr_subject": "테스트 제목"
+  ,"wr_content": "내용"
+  ,"hits":10
+}
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7.MongoDB 특징을 정리 하자면
+1. 여러개의테이블구조를배열형태로하나의컬렉션으로관리할수있다 (데이터를읽을때 join 하는구조가아니라데이터를생성할때 join 을하게된다)
+2. 고정된스키마로부터구애받지않고자유로운문서지향데이터베이스이다
+DB 스키마를만들지않고동적으로문서를원하는대로생성하고저장함
+3. 다양한타입지원:String, Integer, Boolean , Arrays , Timestamp, Date  , Object 등여러데이터타입을지원한다
+4. 읽기쓰기효율을높이고자동으로장애조치를하고확장이용이함 (특별한경우를제외하고오류가잘안남)
+5. 여러서버에분산저장및확장이용이하며(Sharding - 파편화), 방대한데이터처리가(빅데이터)빠르다는장점이있다
+
+
+
+
+
+
+
+
+

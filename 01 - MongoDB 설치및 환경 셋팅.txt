@@ -1,0 +1,116 @@
+01강 -MongoDB설치및환경셋팅
+
+
+1. MongoDB유래
+
+Humongous ,휴몽고스, 거대한
+
+2. Windows 에서MongoDB설치하기
+
+* 사이트다운로드및설치
+https://www.mongodb.com/try/download/community-> Windows 버전다운
+
+* 환경변수Path 설정
+바탕화면->내PC ->속성->고급->환경변수->시스템변수-> Path 추가
+C:\Program Files\MongoDB\Server\3.2\bin
+
+* data , log 폴더생성
+데이터폴더: C:\Program Files\MongoDB\data
+로그폴더: C:\Program Files\MongoDB\log
+
+* MongoDB실행
+관리자권한으로명령프롬프트띄위기:윈도우키+ X
+
+
+
+"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" --dbpath "C:\Program Files\MongoDB\data"
+mongod --dbpath "C:\Program Files\MongoDB\data"
+
+
+종료: Ctrl + C 도는Ctrl + D
+
+
+
+
+
+
+
+
+* 설정파일편집: C:\Program Files\MongoDB\mongod.cfg
+편집: User 권한 조정 필요
+# 데이터베이스폴더
+dbpath = C:\Program Files\MongoDB\data
+
+# mongdb포트
+port = 27017
+
+# 로그파일
+logpath = C:\Program Files\MongoDB\logs\mongo.log
+
+# 웹관리사용
+rest = true
+
+
+* 윈도우서비스등록하기
+"C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe" -f "C:\Program Files\MongoDB\mongod.cfg" -install
+서비스 삭제: sc delete mongodb
+
+
+* 접속및확인
+접속
+> mongo
+
+DB 목록
+> show dbs
+
+DB 선택
+> use local
+
+테이블(컬렉션) 목록
+> show tables
+
+테이블조회
+db.startup_log.find()
+
+
+
+3. Ubuntu 에서MongoDB설치하기
+
+
+* 패키지정보업데이트
+apt-get update
+
+
+* 서버클라이언트설치
+apt-get install mongodb-clients mongodb-server
+삭제: apt-get remove mongodb
+
+
+* 버전확인
+mongod --version
+
+
+* 서비스시작
+service mongodb start
+
+
+
+* 접속및확인
+접속
+> mongo
+
+DB 목록
+> show dbs
+
+DB 선택
+> use local
+
+테이블(컬렉션) 목록
+> show tables
+
+테이블조회
+db.startup_log.find()
+
+
+
+

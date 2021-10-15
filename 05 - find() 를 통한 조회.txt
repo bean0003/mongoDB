@@ -1,0 +1,173 @@
+05강 - find() 를 통한 조회
+
+
+1. 샘플 데이터 입력
+db.getCollection('board').insert(
+[
+	{
+		"idx":1,
+		"subject":"Board title 1",
+		"content":"This is content 1",
+		"name":"Kim",
+		"hits": 5,
+		"date":"2016-11-10"
+	},
+	{
+		"idx":2,
+		"subject":"Board title 2",
+		"content":"This is content 2",
+		"name":"Kang",
+		"hits": 10,
+		"date":"2016-11-10"
+	},
+	{
+		"idx":3,
+		"subject":"Board title 3",
+		"content":"This is content 3",
+		"name":"Lee",
+		"hits": 15,
+		"date":"2016-11-10"
+	},
+	{
+		"idx":4,
+		"subject":"Board title 4",
+		"content":"This is content 4",
+		"name":"Park",
+		"hits": 20,
+		"date":"2016-11-11"
+	},
+	{
+		"idx":5,
+		"subject":"Board title 5",
+		"content":"This is content 5",
+		"name":"Jang",
+		"hits": 25,
+		"date":"2016-11-11"
+	}
+]
+)
+
+
+2. 기본 Equal(=) 조회
+
+db.board.find(  { "name":"Kim" }  )
+
+db.getCollection("board").find(  { name:"Kim" }  )
+
+// 1건만 조회
+db.board.findOne({"date":"2016-11-10"})
+
+
+3. AND 조회
+
+db.getCollection('board').find({ 
+    $and:[ { "date":"2016-11-11"} , {"name":"Jang"}  ] 
+})
+
+db.getCollection('board').find({ "date":"2016-11-11", "name":"Jang" }  )
+
+
+4. OR 조회
+
+db.getCollection('board').find({ 
+    $or:[ { "date":"2016-11-11"} , {"name":"Jang"}  ] 
+})
+
+db.getCollection('board').find({ 
+    $or:[ , {"name":"Kim"}, {"name":"Jang"}, {"name":"Park"}  ] 
+})
+
+
+
+5. AND,OR 조회
+
+db.getCollection('board').find( {  
+"date":"2016-11-10", 
+{ $or:[{"name":"Kim"},{"name":"Kang"}]  }
+}  )
+
+
+
+
+
+
+
+
+6. Like 조회, 정규표현식 (Regular expression)
+
+Like '%K%'
+db.board.find({"name": /a/})
+db.board.find( {'name': {'$regex': 'a'}} )
+
+Like 'K%'
+db.board.find({"name": /^P/})
+
+Like '%g'
+db.board.find({"name": /g$/})
+
+
+
+
+7. 부등호 조회
+
+hits> 10
+db.board.find({"hits":{ $gt:10 } })
+
+hits< 10
+db.board.find({"hits":{ $lt:10 } })
+
+hits>= 10
+db.board.find({"hits":{ $gte:10 } })
+
+hits<= 10
+db.board.find({"hits":{ $lte:10 } })
+
+hits!= 10
+db.board.find({"hits":{ $ne:10 } })
+
+hits> 10 AND hits< 20
+db.board.find( { $and:[ {"hits":{ $gt:10 }},  {"hits":{ $lt:25 }} ]  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. exists 존재 검사
+
+// 데이터 입력
+db.getCollection('board').insert(
+[
+	{
+		"idx":6,
+		"subject":"Board title 6",
+		"content":"This is content 6",		
+		"hits": 6,
+		"date":"2016-11-10"
+	}
+
+]
+)
+
+// 존재 검사
+db.board.find( {name: {$exists: true} } )
+
+
+
+
+
+
+
+
+
+
+
+
+

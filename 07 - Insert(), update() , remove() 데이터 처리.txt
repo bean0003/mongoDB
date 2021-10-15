@@ -1,0 +1,135 @@
+07강 - Insert(), update() , remove() 데이터 처리
+
+
+1. insert() 입력
+
+// 1건
+db.users.insert(
+   {
+      name: "sue",
+      age: 19,
+      status: "P"
+   }
+)
+
+// 다수
+db.users.insert(
+   [
+     { name: "bob", age: 42, status: "A", },
+     { name: "ahn", age: 22, status: "A", },
+     { name: "xi", age: 34, status: "D", }
+   ]
+)
+
+
+2. insertOne() 1건 입력 - 3.2버전
+
+// 1건만 가능함
+db.users.insertOne(
+   {
+      name: "sue",
+      age: 19,
+      status: "P"
+   }
+)
+
+
+3. insertMany() 여러건 입력 - 3.2버전
+
+db.users.insertMany(
+   [
+     { name: "bob", age: 42, status: "A", },
+     { name: "ahn", age: 22, status: "A", },
+     { name: "xi", age: 34, status: "D", }
+   ]
+)
+4. update() 수정
+
+// 데이터 입력
+db.users.insert(
+   {
+      name: "Andy",
+      rating: 0,
+      score: 0
+   }
+)
+
+// 기본적으로 한건만 업데이트 됨
+db.users.update(
+{ name: "Andy" },
+   {
+      name: "Andy",
+      rating: 1,
+      score: 1
+   }
+)
+
+5. update() - insert() 입력/수정
+
+// 존재하면 update, 존재하지 않으면 insert
+db.users.update(
+{ name: "Tedi" },
+   {
+      name: "Tedi",
+      rating: 3,
+      score: 3
+   },
+   { upsert: true }
+)
+
+5. updateOne() - 3.2버전
+
+// 한건만 수정
+db.users.updateOne(
+   { name: "Andy" },
+   {
+      name: "Andy",
+      rating: 11,
+      score: 11
+   }
+)
+6. 다수 업데이트
+
+// 다수 수정
+db.users.update(
+   { name: "Andy" },
+   { $set: 
+     {
+      name: "Andy",
+      rating: 33,
+      score: 33
+     }
+}
+   ,{ multi: true }
+)
+
+
+// 3.2 버전
+db.users.updateMany(
+   { name: "Andy" },
+   { $set: 
+{
+      name: "Andy",
+      rating: 44,
+      score: 44
+}
+}
+)
+
+
+7. remove()
+
+// 조건 삭제
+db.users.remove(  { name: "Andy" } )
+
+// 전체 삭제
+db.users.remove( {} )
+
+8. 안전한 삭제
+
+// 한건만 삭제
+db.users.deleteOne( {name: "Andy"} )
+
+// 다수 삭제
+db.users.deleteMany( {name: "Andy"} )
+

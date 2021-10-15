@@ -1,0 +1,45 @@
+09강 - 페이징 처리 기법 배우기
+
+
+1. 샘플 데이터
+
+db.board.insert(
+   [
+     { subject: "Board title 1" },
+     { subject: "Board title 2" },
+     { subject: "Board title 3" },
+     { subject: "Board title 4" },
+     { subject: "Board title 5" },
+     { subject: "Board title 6" },
+     { subject: "Board title 7" },
+     { subject: "Board title 8" },
+     { subject: "Board title 9" },
+     { subject: "Board title 10" },
+     { subject: "Board title 11" },
+     { subject: "Board title 12" },
+     { subject: "Board title 13" },
+     { subject: "Board title 14" },
+     { subject: "Board title 15" },
+     { subject: "Board title 16" },
+     { subject: "Board title 17" },
+     { subject: "Board title 18" },
+     { subject: "Board title 19" },
+     { subject: "Board title 20" },
+   ]
+)
+
+
+2. 1페이당 5건씩 출력
+
+// 시작카운트 = (page - 1)*5
+
+// 1page: 0, 
+db.board.find().skip( 0 ).limit( 5 );
+
+// 2page: 5
+db.board.find().skip(5).limit( 5 );
+
+// 3page: 10
+db.board.find().skip(10).limit( 5 );
+
+

@@ -1,0 +1,61 @@
+10강 - Index 생성 및 삭제
+
+
+1. 샘플 데이터 
+
+db.board.insert(
+   [
+     { subject: "Board title 1", "name":"Kim 1", "hits":10 },
+     { subject: "Board title 2", "name":"Kim 2", "hits":10 },
+     { subject: "Board title 3", "name":"Kim 3", "hits":10 },
+     { subject: "Board title 4", "name":"Kim 4", "hits":10 },
+     { subject: "Board title 5", "name":"Kim 5", "hits":10 },
+     { subject: "Board title 6", "name":"Kim 6", "hits":10 },
+     { subject: "Board title 7", "name":"Kim 7", "hits":10 },
+     { subject: "Board title 8", "name":"Kim 8", "hits":10 },
+     { subject: "Board title 9", "name":"Kim 9", "hits":10 },
+     { subject: "Board title 10", "name":"Kim 10", "hits":10 },
+     { subject: "Board title 11", "name":"Kim 1", "hits":10 },
+     { subject: "Board title 12", "name":"Kim 2", "hits":10 },
+     { subject: "Board title 13", "name":"Kim 3", "hits":10 },
+     { subject: "Board title 14", "name":"Kim 4", "hits":10 },
+     { subject: "Board title 15", "name":"Kim 5", "hits":10 },
+     { subject: "Board title 16", "name":"Kim 6", "hits":10 },
+     { subject: "Board title 17", "name":"Kim 7", "hits":10 },
+     { subject: "Board title 18", "name":"Kim 8", "hits":10 },
+     { subject: "Board title 19", "name":"Kim 9", "hits":10 },
+     { subject: "Board title 20", "name":"Kim 10", "hits":10 },
+   ]
+)
+
+2. Index 생성 
+
+// 1=오름차순, -1=내림차순
+db.board.createIndex( { subject: 1 } ) 
+
+3. Index 조회, 삭제
+
+// 조회
+db.board.getIndexes()
+
+// 삭제
+db.board.dropIndex({ subject: 1 } ) 
+
+
+
+4. 멀티 Index
+
+db. board.createIndex( { subject: 1, hits: -1} )
+
+5. 유니크 Index 
+
+db. board.createIndex( { subject: 1}, { unique: true }  )
+
+// 입력 테스트
+db.board.insert(
+     { subject: "Board title 1", "name":"Kim 1", "hits":10 }
+)
+
+
+
+

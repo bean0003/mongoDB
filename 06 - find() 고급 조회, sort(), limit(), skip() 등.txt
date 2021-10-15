@@ -1,0 +1,45 @@
+06 - find() 고급 조회, sort(), limit(), skip() 등
+
+
+
+1. sort()  정렬
+
+// 오름차순
+db.board.find({}).sort( {"hits":1} )
+
+// 내림차순(역순)
+db.board.find({}).sort( {"hits":-1} )
+
+// 복수 필드
+db.board.find({}).sort( {"date":-1, "hits":-1} )
+
+
+2. LImit() 제한
+
+// 3건만 가져옴
+db.board.find({}).limit(3)
+
+
+3. skip()건너뛰기, 0부터 시작
+
+// 3번째 건부터 출력함
+db.board.find({}).skip(2)
+
+
+4. distinct 구분하기
+
+// 배열로 리턴함
+db.board.distinct("date")
+
+
+
+
+
+
+
+
+
+
+
+
+

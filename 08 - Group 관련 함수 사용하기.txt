@@ -1,0 +1,82 @@
+08강 - Group 관련 함수 사용하기
+
+
+
+1. 샘플 데이터 입력
+
+db.getCollection('board2').insert(
+[
+
+{
+
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by_user: 'tutorials point',
+   url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+},
+{
+
+   title: 'NoSQL Overview', 
+   description: 'No sql database is very fast',
+   by_user: 'tutorials point',
+   url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 10
+},
+{
+
+   title: 'Neo4j Overview', 
+   description: 'Neo4j is no sql database',
+   by_user: 'Neo4j',
+   url: 'http://www.neo4j.com',
+   tags: ['neo4j', 'database', 'NoSQL'],
+   likes: 750
+}
+
+]
+)
+
+
+
+
+
+
+
+
+2. Group Count 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", count?: {$sum : 1}}}])
+
+3. Sum 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", sum?: {$sum : "$likes"}}}])
+
+
+4. Avg 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", avg : {$avg : "$likes"}}}])
+
+
+5. Min 구하기
+db.board2.aggregate([{$group : {_id : "$by_user", min : {$min : "$likes"}}}])
+
+6. Max 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", max : {$max : "$likes"}}}])
+
+
+7. First 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", first: {$first : "$likes"}}}])
+
+
+8. Last 구하기
+
+db.board2.aggregate([{$group : {_id : "$by_user", last : {$last : "$likes"}}}])
+
+
+
+
+

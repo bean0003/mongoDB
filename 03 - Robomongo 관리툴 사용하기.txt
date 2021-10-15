@@ -1,0 +1,60 @@
+03강 - Robomongo관리툴 사용하기
+
+
+
+1. 관리툴의 장점
+
+1. 난해한구조인Json형태의 데이터를 일목요연하게 보여준다
+2. 컬렉션, 도큐먼트의 관리가 쉽다
+
+* 프롬프트 형태
+
+
+* 관리툴
+
+
+
+
+
+2. Robomongo 다운로드
+
+https://robomongo.org
+
+3. localhost 연결
+
+
+4. Ubuntu 원격서버 연결
+
+
+
+5. 좌측 메뉴 설명
+
+
+우측 마우스 기능들
+- 서버관리: Server Status, Host Info, Create Database 등
+- Collection 관리
+- Document 관리
+
+6. 우측 View 설명
+
+
+탭 기능
+- 페이징 기능
+- View 모드 변경: Tree, Table, Text 모드
+
+우측 마우스 기능들
+- Edit, Insert, View, Delete
+
+7. DB, Collection 생성, Insert테스트
+1. Create Database: testdb
+2. Create Collection: member
+3. Insert Document
+{
+    "name":"Jang",
+    "age":40,
+    "phone":"010-111-2222",
+    "addr":"Seoul korea"
+}
+4. Data Refreash: F5
+
+* 한글은 입력이 오류가 있음, 데이터 복사, 붙이기 권장
