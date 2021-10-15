@@ -1,0 +1,164 @@
+데이터명 test105 생성
+
+데이터베이스 생성
+use test105;
+데이터베이스 확인
+show dbs;
+
+컬렉션(테이블 생성)
+db.createCollection('testCollection');
+
+컬렉션 확인
+show collections;
+
+
+컬렉션 삭제
+db.컬렉션명.drop();
+db.testCollection.drop();
+
+다시연습용 컬렉션 만들기
+db.createCollection("member");
+
+
+document 추가-> 즉 테이블 생성 -> 데이터 입력
+db.컬렉션명.insert(객체);
+
+db.member.insert({'userid':'apple','userpw':'1111'});
+db.member.insert({'userid':'banana','userpw':'2222','username':'반하나'});
+
+db.member.insert({"userid":"orange","userpw":"3333","gender":"남자"});
+db.member.insert({"userid":"melon","userpw":"4444","gender":"남자", "username":"이메론"});
+
+db.member.insert({"userid":"cherry","userpw":"5555", "username":"채리","gender":"여자","point":2000});
+db.member.insert({"userid":"avocado","userpw":"6666", "username":"안카도","gender":"남자","point":1500});
+db.member.insert({"userid":"berry","userpw":"7777", "username":"배애리","gender":"여자","point":1800});
+db.member.insert({"userid":"coconut","userpw":"8888", "username":"고코넛","gender":"남자","point":1700});
+
+
+
+
+document 확인
+db.컬렉션명.find();
+db.member.find();
+
+->>잘정리되었어 보여줌
+db.컬렉션명.find().pretty();
+db.member.find().pretty();
+
+
+->>특정 테이터만 보여줌
+db.컬렉션명.find(객체).pretty();
+db.member.find({"userid":"apple"}).pretty();
+  
+db.member.find({"gender" : "남자"}).pretty(); 
+  //{"gender" : "남자"}객체에 해당하는 데이터들이 모두 출력
+
+db.member.findOne({"gender" : "남자"}) // 1건만 조회
+
+* _id는 각 document의 유일한 키로 쓰이는 값입니다.
+-> document를 저장하고 확인
+
+
+document 비교연산 -> 값이 크다 작다의 의미가 아니라 하나의 변수값을 선언하는 것
+$eq : 주어진 값과 일치하는 값을 찾습니다.
+$gt : 주어진 값보다 큰 값을 찾습니다.
+$gte : 주어진 값보다 크거나 같은 값을 찾습니다.
+$lt : 주어진 값보다 작은 값을 찾습니다.
+$lte : 주어진 값보다 작거나 같은 값을 찾습니다.
+$ne : 주어진 값과 일치하지 않는 값을 찾습니다.
+$in : 주어진 배열 안에 속하는 값을 찾습니다.
+$nin : 주어진 배열 안에 속하지 않는 값을 찾습니다.
+
+db.member.find({point:{$gte:1700}}).pretty();
+
+document 논리연산
+$or : 주어진 조건 중 하나라도 true일 때 true인 결과를 찾습니다.
+$and : 주어진 모든 조건이 true일 때 true인 결과를 찾습니다.
+$not : 주어진 조건이 false일 때 true, true일 때 false인 결과를 찾습니다.
+
+아이디가 "melon"이고 이름이 "이메론"인 멤버를 검색합니다
+db.member.find({$and:[{"userid":"melon"},{"username":"이메론"}]}).pretty();
+-> 조건이 2가지 이상이면 배열이기 때문에$and:[]로 표시
+-> 객체은 무조건 {}
+
+1. 이름이 "안카도"인 멤버를 검색합니다.
+db.member.find({"username":"안카도"}).pretty();
+
+2. 포인트가 1800보다 작거나 같은 멤버를 검색합니다.
+db.member.find({"point":{$lte:1800}}).pretty();
+
+3. 아이디가 "apple" 이거나 "banana"인 멤버를 검색합니다.
+db.member.find({$or:[{'userid':'apple'},{'userid':'banana'}]}).pretty();
+
+4. 성별이 "여자"이고 포인트가 1700이상인 멤버를 검색합니다.
+db.member.find({$and:[{"gender":"여자"},{"point":{$gte:1700}}]} ).pretty();
+
+
+
+document 정렬
+db.컬렉션명.find().sort(객체)
+{key:value} -> key는 데이터의 field이름,value의 값은 1(오름차순) 또는 -1(내림차순)
+여러 key를 입력할 수 있고, 먼저 입력한 key가 우선권을 갖음.
+
+db.member.find().sort()
+db.member.find().sort({"_id":-1}).pretty();
+db.member.find().sort({"userpw":1}).pretty();
+
+
+document의 개수 제한
+limit():출력할 데이터 개수를 제한할때 사용
+db.컬렉션명.find().limit(출력할 개수)
+db.member.find().limit(3).pretty();
+
+document 데이터 생략 후 출력
+skip():출력할 데이터의 시작부분을 설정할 경우 사용
+db.컬렉션명r.find().skip(생략할 개수);
+db.member.find().skip(2).pretty();
+
+
+데이터 update()
+db.member.update();
+
+db.member.update({'userid':'apple'},{'userid':'apple','userpw':'1234' });
+//db.member.update({특정속성key값},{'userid':'apple','userpw':'1234' });
+
+//원래 내용
+db.member.insert({"userid":"orange","userpw":"3333","gender":"남자"});
+
+//업데이트될 내용
+db.member.insert({"userid":"orange","userpw":"5555","gender":"여자"});
+
+//실행문
+db.member.update({"userid":"orange"},{"userid":"orange","userpw":"5555","gender":"여자"});
+
+
+
+
+
+
+
+
+{
+        "_id" : ObjectId("6168d9d3b796d40889bf1223"),
+        "userid" : "coconut",
+        "userpw" : "8888",
+        "username" : "고코넛",
+        "gender" : "남자",
+        "point" : 1700
+}
+
+db.member.update({"userid" : "coconut"},
+        {"_id" : ObjectId("6168d9d3b796d40889bf1223"), "userid" : "coconut", "userpw" : "99999", "username" : "라면", "gender" : "외계인","point" : 0}
+);
+
+
+
+
+
+7. remove()
+
+// 조건 삭제
+db.member.remove({"userid" : "coconut"});
+
+// 전체 삭제
+db.member.remove()

@@ -32,8 +32,8 @@ db.test.drop()
 
 6. Database 삭제
 
-use testDb
+use testDb -> 데이터 베이스 선택
 db.dropDatabase() 
 
-반드시 선택후 삭제 해야함, DB 확인 필수
+******반드시 선택후 삭제 해야함, DB 확인 필수
 

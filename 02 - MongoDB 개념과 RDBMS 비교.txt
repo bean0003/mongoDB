@@ -13,7 +13,13 @@ Javascript의Json(BSON)형태의데이터구조를가진다
 2. NoSQL이란?
 SQL = Structured Query Language (구조적질의언어)
 NoSQL = No Structured Query Language (구조가없는질의언어)
-즉Table(Collection) 에서스키마(Schema) 를가지고있지않음.
+즉Table(Collection) 에서스키마(Schema) 를가지고있지않음.
+
+스키마란 - 데이터베이스의 구조와 제약조건에 관해 전반적인 명세를 기술한 것입니다.
+	개체의 특성을 나타내는 속성(Attribute)과
+	속성들의 집합으로 이루어진 개채(Entity),
+	개체사이에 존재하는 관계(Relation)에 대한 정의와
+	이들이 유지해야 할 제약조건들을 기술한 것입니다.
 
 
 3. Collection 와Document 는뭔가요?

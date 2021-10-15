@@ -11,7 +11,7 @@ Humongous ,휴몽고스, 거대한
 https://www.mongodb.com/try/download/community-> Windows 버전다운
 
 * 환경변수Path 설정
-바탕화면->내PC ->속성->고급->환경변수->시스템변수-> Path 추가
+바탕화면->내PC ->속성->고급->환경변수->시스템변수-> Path에서 추가
 C:\Program Files\MongoDB\Server\3.2\bin
 
 * data , log 폴더생성
@@ -27,10 +27,9 @@ C:\Program Files\MongoDB\Server\3.2\bin
 mongod --dbpath "C:\Program Files\MongoDB\data"
 
 
-종료: Ctrl + C 도는Ctrl + D
+종료: Ctrl + C 도는Ctrl + D
 
-
-
+cmder설치하여 실행
 
 
 

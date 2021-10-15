@@ -74,7 +74,7 @@ db.getCollection('board').find({
 })
 
 db.getCollection('board').find({ 
-    $or:[ , {"name":"Kim"}, {"name":"Jang"}, {"name":"Park"}  ] 
+    $or:[ {"name":"Kim"}, {"name":"Jang"}, {"name":"Park"}  ] 
 })
 
 
@@ -128,6 +128,16 @@ db.board.find({"hits":{ $ne:10 } })
 hits> 10 AND hits< 20
 db.board.find( { $and:[ {"hits":{ $gt:10 }},  {"hits":{ $lt:25 }} ]  })
 
+
+document 비교연산 -> 값이 크다 작다의 의미가 아니라 하나의 변수값을 선언하는 것
+$eq : 주어진 값과 일치하는 값을 찾습니다.
+$gt : 주어진 값보다 큰 값을 찾습니다.
+$gte : 주어진 값보다 크거나 같은 값을 찾습니다.
+$lt : 주어진 값보다 작은 값을 찾습니다.
+$lte : 주어진 값보다 작거나 같은 값을 찾습니다.
+$ne : 주어진 값과 일치하지 않는 값을 찾습니다.
+$in : 주어진 배열 안에 속하는 값을 찾습니다.
+$nin : 주어진 배열 안에 속하지 않는 값을 찾습니다.
 
 
 
